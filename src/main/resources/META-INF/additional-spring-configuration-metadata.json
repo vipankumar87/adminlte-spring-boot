@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "app.branding.name",
+    "type": "java.lang.String",
+    "description": "A description for 'app.branding.name'"
+  },
+  {
+    "name": "app.branding.tagline",
+    "type": "java.lang.String",
+    "description": "A description for 'app.branding.description'"
+  },
+  {
+    "name": "app.branding.description",
+    "type": "java.lang.String",
+    "description": "A description for 'app.branding.description'"
+  }
+]}
