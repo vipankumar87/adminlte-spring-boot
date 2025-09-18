@@ -1,0 +1,47 @@
+<!-- Main menu fragment - used for the top level menu -->
+<ul th:fragment="adminMenu(menus)" class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="navigation" aria-label="Main navigation" data-accordion="false">
+    <li th:each="menu : ${menus}" th:class="${menu.children.isEmpty() ? 'nav-item' : 'nav-item'}">
+        <!-- Menu item with children -->
+        <a th:if="${!menu.children.isEmpty()}" href="#" class="nav-link">
+            <i th:class="${'nav-icon ' + menu.icon}"></i>
+            <p>
+                <span th:text="${menu.title}">Menu Title</span>
+                <i class="nav-arrow bi bi-chevron-right"></i>
+            </p>
+        </a>
+        <!-- Menu item without children -->
+        <a th:if="${menu.children.isEmpty()}" th:href="${menu.link}" class="nav-link">
+            <i th:class="${'nav-icon ' + menu.icon}"></i>
+            <p th:text="${menu.title}">Menu Title</p>
+        </a>
+        
+        <!-- Submenu items -->
+        <ul th:if="${!menu.children.isEmpty()}" class="nav nav-treeview">
+            <th:block th:replace="~{fragments/dynamic_menu :: menuItems(menus=${menu.children})}"></th:block>
+        </ul>
+    </li>
+</ul>
+
+<!-- Menu items fragment - used for recursive rendering of menu items -->
+<th:block th:fragment="menuItems(menus)">
+    <li th:each="menu : ${menus}" th:class="${menu.children.isEmpty() ? 'nav-item' : 'nav-item'}">
+        <!-- Menu item with children -->
+        <a th:if="${!menu.children.isEmpty()}" href="#" class="nav-link">
+            <i th:class="${'nav-icon ' + menu.icon}"></i>
+            <p>
+                <span th:text="${menu.title}">Menu Title</span>
+                <i class="nav-arrow bi bi-chevron-right"></i>
+            </p>
+        </a>
+        <!-- Menu item without children -->
+        <a th:if="${menu.children.isEmpty()}" th:href="${menu.link}" class="nav-link">
+            <i th:class="${'nav-icon ' + menu.icon}"></i>
+            <p th:text="${menu.title}">Menu Title</p>
+        </a>
+        
+        <!-- Recursive rendering for deeper levels -->
+        <ul th:if="${!menu.children.isEmpty()}" class="nav nav-treeview">
+            <th:block th:replace="~{fragments/dynamic_menu :: menuItems(menus=${menu.children})}"></th:block>
+        </ul>
+    </li>
+</th:block>

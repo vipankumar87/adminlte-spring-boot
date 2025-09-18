@@ -1,5 +1,6 @@
 package com.rudra.blog_java.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -8,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.rudra.blog_java.services.UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -29,6 +32,9 @@ public class WebSecurity {
         "/about"
     };
 
+    @Autowired
+    private UserService userDetailsService;
+    
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http

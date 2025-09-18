@@ -29,21 +29,5 @@ public class AuthController {
     @GetMapping("/logout")
     public String logout() {
         return "auth/logout";
-    }
-    
-    @GetMapping("/contact")
-    public String contact() {
-        return "contact";
-    }
-    
-    @GetMapping("/about")
-    public String about() {
-        return "about";
-    }
-    
-    @GetMapping("/")
-    public String home() {
-        return "index";
-    }
-    
+    }    
 }
